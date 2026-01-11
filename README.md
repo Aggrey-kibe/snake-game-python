@@ -1,4 +1,3 @@
-
 # Snake Game — Python (Pygame)
 
 ## Overview
@@ -58,3 +57,5 @@ START_SPEED = 10
 # Fonts
 score_font = pygame.font.SysFont("arial", 30)
 message_font = pygame.font.SysFont("arial", 40)
+
+
