@@ -29,11 +29,12 @@ The game logic is separated from this README for clarity and professional presen
 ## How to Run
 Clone the repository or download the project files. Open the project folder, create and activate a virtual environment, install Pygame, and run the game:
 
-```bash
+```
 python -m venv venv
 venv\Scripts\activate
 python -m pip install pygame
 python snake_game.py
+```
 
 ## Skills Demonstrated
 - Python fundamentals
