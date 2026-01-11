@@ -2,9 +2,8 @@
 
 ## Overview
 This project is a fully functional Snake Game implemented in Python using the Pygame framework.  
-It demonstrates core programming concepts such as real-time game loops, event handling, collision detection, and state management.
-
-The project was developed as a foundational software engineering exercise with emphasis on clean structure, readability, and correct game logic, making it suitable for portfolio and technical review.
+It demonstrates real-time game loops, event handling, collision detection, and state management.  
+The project is a foundational software engineering exercise, emphasizing clean structure, readability, and correct game logic — suitable for portfolio or technical review.
 
 ---
 
@@ -27,7 +26,7 @@ The project was developed as a foundational software engineering exercise with e
 
 ## Project Structure
 
-The `snake_game.py` file contains the full game logic. Key sections include initialization, game loop, snake movement, collision detection, food spawning, scoring, and level system.
+The file `snake_game.py` contains the full game logic: initialization, game loop, snake movement, collision detection, food spawning, scoring, and level system.
 
 ```python
 import pygame
@@ -61,27 +60,16 @@ score_font = pygame.font.SysFont("arial", 30)
 message_font = pygame.font.SysFont("arial", 40)
 
 def draw_score(score_value, level_value):
-    text_surface = score_font.render(
-        f"Score: {score_value}   Level: {level_value}",
-        True,
-        COLOR_BLACK
-    )
+    text_surface = score_font.render(f"Score: {score_value}   Level: {level_value}", True, COLOR_BLACK)
     screen.blit(text_surface, (10, 10))
 
 def draw_snake(block_size, snake_body):
     for block in snake_body:
-        pygame.draw.rect(
-            screen,
-            COLOR_GREEN,
-            [block[0], block[1], block_size, block_size]
-        )
+        pygame.draw.rect(screen, COLOR_GREEN, [block[0], block[1], block_size, block_size])
 
 def show_message(text, color):
     message_surface = message_font.render(text, True, color)
-    screen.blit(
-        message_surface,
-        (SCREEN_WIDTH / 6, SCREEN_HEIGHT / 3)
-    )
+    screen.blit(message_surface, (SCREEN_WIDTH / 6, SCREEN_HEIGHT / 3))
 
 def game_loop():
     game_running = True
@@ -89,28 +77,22 @@ def game_loop():
 
     x_position = SCREEN_WIDTH / 2
     y_position = SCREEN_HEIGHT / 2
-
     x_change = 0
     y_change = 0
-
     snake_body = []
     snake_length = 1
-
     food_x = round(random.randrange(0, SCREEN_WIDTH - BLOCK_SIZE) / 10) * 10
     food_y = round(random.randrange(0, SCREEN_HEIGHT - BLOCK_SIZE) / 10) * 10
-
     score = 0
     level = 1
     speed = START_SPEED
 
     while game_running:
-
         while game_over:
             screen.fill(COLOR_BLUE)
             show_message("Game Over! Press C to Play Again or Q to Quit", COLOR_RED)
             draw_score(score, level)
             pygame.display.update()
-
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_q:
@@ -136,27 +118,16 @@ def game_loop():
                     y_change = BLOCK_SIZE
                     x_change = 0
 
-        if (
-            x_position >= SCREEN_WIDTH
-            or x_position < 0
-            or y_position >= SCREEN_HEIGHT
-            or y_position < 0
-        ):
+        if x_position >= SCREEN_WIDTH or x_position < 0 or y_position >= SCREEN_HEIGHT or y_position < 0:
             game_over = True
 
         x_position += x_change
         y_position += y_change
-
         screen.fill(COLOR_BLUE)
-        pygame.draw.rect(
-            screen,
-            COLOR_RED,
-            [food_x, food_y, BLOCK_SIZE, BLOCK_SIZE]
-        )
+        pygame.draw.rect(screen, COLOR_RED, [food_x, food_y, BLOCK_SIZE, BLOCK_SIZE])
 
         snake_head = [x_position, y_position]
         snake_body.append(snake_head)
-
         if len(snake_body) > snake_length:
             del snake_body[0]
 
@@ -166,7 +137,6 @@ def game_loop():
 
         draw_snake(BLOCK_SIZE, snake_body)
         draw_score(score, level)
-
         pygame.display.update()
 
         if x_position == food_x and y_position == food_y:
@@ -174,7 +144,6 @@ def game_loop():
             food_y = round(random.randrange(0, SCREEN_HEIGHT - BLOCK_SIZE) / 10) * 10
             snake_length += 1
             score += 10
-
             if score % 50 == 0:
                 level += 1
                 speed += 2
