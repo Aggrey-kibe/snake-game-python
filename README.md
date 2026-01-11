@@ -25,6 +25,7 @@ The main Python script `snake_game.py` contains the full game logic, including:
 - Game-over handling
 
 The game logic is separated from this README for clarity and professional presentation.
+![Snake Game Screenshot](screenshot.png)
 
 ## How to Run
 Clone the repository or download the project files. Open the project folder, create and activate a virtual environment, install Pygame, and run the game:
